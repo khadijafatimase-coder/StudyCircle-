@@ -1,0 +1,13 @@
+| Requirement       | Where you demonstrate it           |
+| ----------------- | ---------------------------------- |
+| HTML structure    | All `.html` files                  |
+| CSS styling       | `style.css`                        |
+| Home page         | `index.html`                       |
+| Login/Register    | `login.html`, `register.html`      |
+| Navigation        | `<nav>` + links                    |
+| JavaScript        | `script.js`                        |
+| Form validation   | Login + Register                   |
+| Buttons           | Get Started, Login, Register, Join |
+| Search            | Dashboard                          |
+| Filter            | Dashboard                          |
+| Basic interaction | Join + Logout + validation         |

@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+{% block title %}Dashboard | StudyCircle{% endblock %}
+{% block content %}
+<section class="panel">
+    <span class="tag">Student dashboard</span>
+    <h2>Welcome, {{ session.get('user_name', 'Student') }}! 👋</h2>
+    <p class="muted">Your learning journey starts here. Choose a section below.</p>
+    <div class="grid">
+        <div class="card">
+            <h3>👥 Study Groups</h3>
+            <p>You have joined {{ joined_count }} group(s).</p>
+            <a class="button" href="{{ url_for('groups') }}">Browse Groups</a>
+        </div>
+        <div class="card">
+            <h3>📚 Resources</h3>
+            <p>Find tutorials and study material for your subjects.</p>
+            <a class="button" href="{{ url_for('resources') }}">Browse Resources</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Available Study Groups</h2>
+    <div class="grid">
+        {% for group in groups %}
+        <div class="card">
+            <span class="tag">{{ group.subject }}</span>
+            <h3>{{ group.name }}</h3>
+            <p>{{ group.description }}</p>
+            {% if group.joined %}
+                <span class="muted">✓ Already joined</span>
+            {% else %}
+                <form method="POST" action="{{ url_for('join_group', group_id=group.id) }}" style="padding:0;border:0;box-shadow:none;margin:10px 0">
+                    <button type="submit">Join Group</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <h2>Recommended Resources</h2>
+    <div class="grid">
+        {% for item in resources %}
+        <div class="card">
+            <span class="tag">{{ item.category }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">Open resource →</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% block title %}Register | StudyCircle{% endblock %}
+{% block content %}
+<form method="POST" action="{{ url_for('register') }}">
+    <h2>Create Your Account</h2>
+    <p class="muted">Join the StudyCircle student community.</p>
+
+    <label for="name">Full Name</label>
+    <input id="name" name="name" type="text" placeholder="Enter your full name" required maxlength="100" autocomplete="name">
+
+    <label for="email">Email Address</label>
+    <input id="email" name="email" type="email" placeholder="student@example.com" required autocomplete="email">
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="At least 6 characters" minlength="6" required autocomplete="new-password">
+
+    <button type="submit">Create Account</button>
+    <p style="margin-top:18px">Already registered? <a href="{{ url_for('login') }}">Login here</a></p>
+</form>
+{% endblock %}

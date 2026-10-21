@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block title %}Study Groups | StudyCircle{% endblock %}
+{% block content %}
+<h2>Explore Study Groups</h2>
+<p class="muted">Find students who share your learning interests.</p>
+
+<form class="search" method="GET" action="{{ url_for('groups') }}" style="max-width:none">
+    <input name="q" value="{{ search }}" placeholder="Search groups or subjects..." aria-label="Search groups">
+    <button type="submit">Search</button>
+</form>
+
+<div class="grid">
+    {% for group in groups %}
+    <div class="card">
+        <span class="tag">{{ group.subject }}</span>
+        <h3>{{ group.name }}</h3>
+        <p>{{ group.description }}</p>
+        {% if group.joined %}
+            <span class="muted">✓ You have joined this group</span>
+        {% else %}
+            <form method="POST" action="{{ url_for('join_group', group_id=group.id) }}" style="padding:0;border:0;box-shadow:none;margin:10px 0">
+                <button type="submit">Join Group</button>
+            </form>
+        {% endif %}
+    </div>
+    {% else %}
+    <p>No groups found. Try a different search.</p>
+    {% endfor %}
+</div>
+{% endblock %}

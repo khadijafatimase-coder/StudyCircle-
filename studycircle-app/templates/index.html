@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% block title %}Home | StudyCircle{% endblock %}
+{% block content %}
+<section class="hero">
+    <span class="tag">Your learning community</span>
+    <h1>Learn Together,<br>Grow Together.</h1>
+    <p>Connect with fellow students, discover study materials, and make learning easier with StudyCircle.</p>
+    {% if session.get('user_id') %}
+        <a class="button light-button" href="{{ url_for('dashboard') }}">Open Dashboard →</a>
+    {% else %}
+        <a class="button light-button" href="{{ url_for('register') }}">Get Started →</a>
+        <a class="button light-button" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</section>
+
+<section class="section">
+    <h2>Everything You Need to Learn</h2>
+    <p class="muted">Connect, collaborate, and grow your knowledge.</p>
+    <div class="grid">
+        <div class="card">
+            <h3>👥 Study Groups</h3>
+            <p>Connect with students and learn together as a team.</p>
+            <a href="{{ url_for('groups') if session.get('user_id') else url_for('login') }}">Explore groups →</a>
+        </div>
+        <div class="card">
+            <h3>📚 Learning Resources</h3>
+            <p>Discover useful notes, tutorials, and learning materials.</p>
+            <a href="{{ url_for('resources') if session.get('user_id') else url_for('login') }}">Explore resources →</a>
+        </div>
+        <div class="card">
+            <h3>🔐 Student Dashboard</h3>
+            <p>Access your study space after logging into your account.</p>
+            <a href="{{ url_for('dashboard') if session.get('user_id') else url_for('register') }}">Get started →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
